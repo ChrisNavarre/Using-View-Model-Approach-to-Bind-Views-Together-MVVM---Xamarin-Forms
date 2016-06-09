@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PathfinderCharacterSheet.CharacterStatsPage"
+             xmlns:local="clr-namespace:PathfinderCharacterSheet"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title="Stats">
+    <ContentPage.Resources>
+      <ResourceDictionary>
+        <x:Int32 x:Key="DefaultStat">10</x:Int32> 
+        <local:StatViewModel x:Key="StrengthStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempStrengthStatViewModel" />
+        <local:StatViewModel x:Key="DexterityStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempDexterityStatViewModel" />
+        <local:StatViewModel x:Key="ConstitutionStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempConstitutionStatViewModel" />
+        <local:StatViewModel x:Key="IntelligenceStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempIntelligenceStatViewModel" />
+        <local:StatViewModel x:Key="WisdomStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempWisdomStatViewModel" />
+        <local:StatViewModel x:Key="CharismaStatViewModel" StatValue="{StaticResource DefaultStat}" />
+        <local:StatViewModel x:Key="TempCharismaStatViewModel" />
+        <x:Array x:Key="StatValues" Type="{x:Type x:String}">
+          <x:String>0</x:String>
+          <x:String>1</x:String>
+          <x:String>2</x:String>
+          <x:String>3</x:String>
+          <x:String>4</x:String>
+          <x:String>5</x:String>
+          <x:String>6</x:String>
+          <x:String>7</x:String>
+          <x:String>8</x:String>
+          <x:String>9</x:String>
+          <x:String>10</x:String>
+          <x:String>11</x:String>
+          <x:String>12</x:String>
+          <x:String>13</x:String>
+          <x:String>14</x:String>
+          <x:String>15</x:String>
+          <x:String>16</x:String>
+          <x:String>17</x:String>
+          <x:String>18</x:String>
+          <x:String>19</x:String>
+          <x:String>20</x:String>
+          <x:String>21</x:String>
+          <x:String>22</x:String>
+          <x:String>23</x:String>
+          <x:String>24</x:String>
+          <x:String>25</x:String>
+          <x:String>26</x:String>
+          <x:String>27</x:String>
+          <x:String>28</x:String>
+          <x:String>29</x:String>
+          <x:String>30</x:String>
+          <x:String>31</x:String>
+          <x:String>32</x:String>
+          <x:String>33</x:String>
+          <x:String>34</x:String>
+          <x:String>35</x:String>
+          <x:String>36</x:String>
+          <x:String>37</x:String>
+          <x:String>38</x:String>
+          <x:String>39</x:String>
+          <x:String>40</x:String>
+          <x:String>41</x:String>
+          <x:String>42</x:String>
+          <x:String>43</x:String>
+          <x:String>44</x:String>
+          <x:String>45</x:String>
+          <x:String>46</x:String>
+          <x:String>47</x:String>
+          <x:String>48</x:String>
+          <x:String>49</x:String>
+          <x:String>50</x:String>
+        </x:Array>
+      </ResourceDictionary>
+    </ContentPage.Resources>
+  <StackLayout BindingContext="{StaticResource ActiveCharacter}">
+    <!-- Strength -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Label Text="STR" />
+        <controls:ExtendedPicker x:Name="pStrength" ItemsSource="{StaticResource StatValues}"
+                                 SelectedIndex="{Binding Source={StaticResource StrengthStatViewModel},
+                                    Path=StatValue}" />
+      </StackLayout>
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+        <Label Text="Bonus" />
+        <Label x:Name="lStrengthBonus" Text="{Binding Source={StaticResource StrengthStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+      </StackLayout>
+      
+      <!-- Temp -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+        <Label Text="Temp STR" />
+        <controls:ExtendedPicker x:Name="pTempStrength" SelectedIndex="{Binding Source={StaticResource TempStrengthStatViewModel},
+                                    Path=StatValue}" ItemsSource="{StaticResource StatValues}" HorizontalOptions="FillAndExpand" />
+      </StackLayout>
+
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Label Text="Bonus" />
+        <Label x:Name="lTempStrengthBonus" Text="{Binding Source={StaticResource TempStrengthStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+      </StackLayout>
+    </StackLayout>
+
+    <!-- Dexterity -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Label Text="DEX" />
+        <controls:ExtendedPicker x:Name="pDexterity" ItemsSource="{StaticResource StatValues}" 
+                                SelectedIndex="{Binding Source={StaticResource DexterityStatViewModel}, Path=StatValue}" />
+      </StackLayout>
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Label Text="Bonus" />
+        <Label x:Name="lDexterityBonus" Text="{Binding Source={StaticResource DexterityStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+      </StackLayout>
+
+      <!-- Bonus -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+        <Label Text="Temp DEX" />
+        <controls:ExtendedPicker x:Name="pTempDexterity" 
+                                 SelectedIndex="{Binding Source={StaticResource TempDexterityStatViewModel}, Path=StatValue}"
+                                 ItemsSource="{StaticResource StatValues}" />
+      </StackLayout>
+
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+        <Label Text="Bonus" />
+        <Label x:Name="lTempDexterityBonus" Text="{Binding Source={StaticResource TempDexterityStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+      </StackLayout>
+    </StackLayout>
+
+    <!-- Constitution -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Label Text="CON" />
+        <controls:ExtendedPicker x:Name="pConstitution" ItemsSource="{StaticResource StatValues}" 
+                                SelectedIndex="{Binding Source={StaticResource ConstitutionStatViewModel}, Path=StatValue}" />
+      </StackLayout>
+      <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+        <Label Text="Bonus" />
+        <Label x:Name="lConstitutionBonus" Text="{Binding Source={StaticResource ConstitutionStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+      </StackLayout>
+      
+      <!-- Bonus -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="Temp CON" />
+          <controls:ExtendedPicker x:Name="pTempConstitution"  SelectedIndex="{Binding Source={StaticResource TempConstitutionStatViewModel}, Path=StatValue}"
+                                   ItemsSource="{StaticResource StatValues}" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lTempConstitutionBonus" Text="{Binding Source={StaticResource TempConstitutionStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+
+    <!-- Intelligence -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="INT" />
+          <controls:ExtendedPicker x:Name="pIntelligence" ItemsSource="{StaticResource StatValues}" 
+                                 SelectedIndex="{Binding Source={StaticResource IntelligenceStatViewModel}, Path=StatValue}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lIntelligenceBonus" Text="{Binding Source={StaticResource IntelligenceStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+        </StackLayout>
+      </StackLayout>
+
+      <!-- Bonus -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="Temp INT" />
+          <controls:ExtendedPicker x:Name="pTempIntelligence" SelectedIndex="{Binding Source={StaticResource TempIntelligenceStatViewModel}, Path=StatValue}"
+                                   ItemsSource="{StaticResource StatValues}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lTempIntelligenceBonus" Text="{Binding Source={StaticResource TempIntelligenceStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+
+    <!-- Wisdom -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="WIS" />
+          <controls:ExtendedPicker x:Name="pWisdom" ItemsSource="{StaticResource StatValues}" 
+                                 SelectedIndex="{Binding Source={StaticResource WisdomStatViewModel}, Path=StatValue}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lWisdomBonus" Text="{Binding Source={StaticResource WisdomStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+        </StackLayout>
+      </StackLayout>
+
+      <!-- Bonus -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="Temp WIS" />
+          <controls:ExtendedPicker x:Name="pTempWisdom" SelectedIndex="{Binding Source={StaticResource TempWisdomStatViewModel}, Path=StatValue}"
+                                   ItemsSource="{StaticResource StatValues}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lTempWisdomBonus" Text="{Binding Source={StaticResource TempWisdomStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+
+    <!-- Charisma -->
+    <StackLayout Orientation="Horizontal">
+      <!-- Base -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="CHA" />
+          <controls:ExtendedPicker x:Name="pCharisma" ItemsSource="{StaticResource StatValues}" 
+                                 SelectedIndex="{Binding Source={StaticResource CharismaStatViewModel}, Path=StatValue}" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lCharismaBonus" Text="{Binding Source={StaticResource CharismaStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" />
+        </StackLayout>
+      </StackLayout>
+
+      <!-- Bonus -->
+      <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+          <Label Text="Temp CHA" />
+          <controls:ExtendedPicker x:Name="pTempCharisma" SelectedIndex="{Binding Source={StaticResource TempCharismaStatViewModel}, Path=StatValue}"
+                                   ItemsSource="{StaticResource StatValues}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" >
+          <Label Text="Bonus" />
+          <Label x:Name="lTempCharismaBonus" Text="{Binding Source={StaticResource TempCharismaStatViewModel},
+                                         Path=StatBonus, StringFormat='{0:0.#}'}" VerticalOptions="Fill" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>
